@@ -10,6 +10,7 @@ import { db } from "../firebase.config";
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import OAuth from "../components/OAuth";
 
 function SignUp() {
   const [showPW, setShowPW] = useState(false);
@@ -47,6 +48,7 @@ function SignUp() {
       formDataCopy.serverTimestamp = serverTimestamp();
 
       await setDoc(doc(db, "users", user.uid), formDataCopy);
+      toast.success("Successfully signed up!");
 
       navigate("/");
     } catch (error) {
@@ -104,7 +106,7 @@ function SignUp() {
               </button>
             </div>
           </form>
-          {/* Google OATH */}
+          <OAuth />
           <Link to="/sign-in" className="registerLink">
             Sign In
           </Link>
