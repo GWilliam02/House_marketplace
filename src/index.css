@@ -93,6 +93,7 @@ button {
 .category,
 .explore {
   margin: 1rem;
+  padding-bottom: 60px;
 }
 @media (min-width: 1024px) {
   .pageContainer,
