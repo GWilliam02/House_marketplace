@@ -9,11 +9,15 @@ function OAuth() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const onGoogleClick = () => {};
+
   return (
     <div className="socialLogin">
       <p>
-        Sign{" "}
-        {location.pathname === "/sign-up" ? "up with Google" : "in with Google"}
+        Sign {location.pathname === "/sign-up" ? "up" : "in"} with Google
+        <button className="socialIconDiv" onClick={onGoogleClick}>
+          <img className="socialIconImg" src={googleIcon} alt="Google Icon" />
+        </button>
       </p>
     </div>
   );
