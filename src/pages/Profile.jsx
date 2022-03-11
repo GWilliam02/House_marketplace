@@ -3,7 +3,9 @@ import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import arrowRight from "../assets/svg/keyboardArrowRightIcon.svg";
+import homeIcon from "../assets/svg/homeIcon.svg";
 
 function Profile() {
   const navigate = useNavigate();
@@ -86,6 +88,11 @@ function Profile() {
             />
           </form>
         </div>
+        <Link to="/create-listing" className="createListing">
+          <img src={homeIcon} alt="Home" />
+          <p>Sell or Rent your Home!</p>
+          <img src={arrowRight} alt="Arrow Right" />
+        </Link>
       </main>
     </div>
   );
