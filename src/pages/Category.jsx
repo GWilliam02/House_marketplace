@@ -31,7 +31,7 @@ function Category() {
           orderBy("timestamp", "desc"),
           limit(10)
         );
-        //Excute Query
+        //Excute Query, retrieve data from firebase
         const querySnap = await getDocs(q);
 
         const listings = [];

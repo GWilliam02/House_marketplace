@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Housing Marketplace",
+  "name": "Housing Marketplace App for Udemy",
   "icons": [
     {
       "src": "favicon.ico",
