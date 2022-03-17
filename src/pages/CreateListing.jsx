@@ -59,9 +59,27 @@ function CreateListing() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
   };
 
-  const onMutate = (e) => {};
+  const onMutate = (e) => {
+    let boolean = null;
+    if (e.target.value === "true") {
+      boolean = true;
+    }
+    if (e.target.value === "false") {
+      boolean = false;
+    }
+
+    if (e.target.files) {
+      setFormData((prevState) => ({ ...prevState, images: e.target.files }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.id]: boolean ?? e.target.value, //If variable on the left is null, use ... instead
+      }));
+    }
+  };
 
   if (loading) {
     return <Spinner />;
