@@ -34,6 +34,11 @@ function Category() {
         //Excute Query, retrieve data from firebase
         const querySnap = await getDocs(q);
 
+        // const listings = querySnap.map((doc) => ({
+        //   id: doc.id,
+        //   data: doc.data(),
+        // }))
+
         const listings = [];
         querySnap.forEach((doc) => {
           return listings.push({
