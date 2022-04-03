@@ -80,11 +80,6 @@ function Category() {
       const lastVisible = querySnap.docs[querySnap.docs.length - 1];
       setLastFetchListing(lastVisible);
 
-      // const listings = querySnap.map((doc) => ({
-      //   id: doc.id,
-      //   data: doc.data(),
-      // }))
-
       const listings = [];
       querySnap.forEach((doc) => {
         return listings.push({
