@@ -14,6 +14,7 @@ import { doc, updateDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 function EditListing() {
+  //eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [listing, setListing] = useState(null);
@@ -55,12 +56,16 @@ function EditListing() {
   const isMounted = useRef(true);
 
   //Redirect if listing is not user's
-  useEffect(() => {
-    if (listing && listing.userRef !== auth.currentUser.uid) {
-      toast.error("You cannot edit this listing");
-      navigate("/");
-    }
-  }, []);
+  useEffect(
+    () => {
+      if (listing && listing.userRef !== auth.currentUser.uid) {
+        toast.error("You cannot edit this listing");
+        navigate("/");
+      }
+    },
+    //eslint-disable-next-line
+    []
+  );
 
   //Fetch Listing
   useEffect(() => {
@@ -81,20 +86,24 @@ function EditListing() {
   }, [params.listingId, navigate]);
 
   //Sets userRef to logged-in user
-  useEffect(() => {
-    if (isMounted) {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setFormData({ ...formData, userRef: user.uid });
-        } else {
-          navigate("/sign-in");
-        }
-      });
-    }
-    return () => {
-      isMounted.current = false;
-    };
-  }, [isMounted]);
+  useEffect(
+    () => {
+      if (isMounted) {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setFormData({ ...formData, userRef: user.uid });
+          } else {
+            navigate("/sign-in");
+          }
+        });
+      }
+      return () => {
+        isMounted.current = false;
+      };
+    },
+    //eslint-disable-next-line
+    [isMounted]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -164,6 +173,8 @@ function EditListing() {
                 break;
               case "running":
                 console.log("Upload is running");
+                break;
+              default:
                 break;
             }
           },

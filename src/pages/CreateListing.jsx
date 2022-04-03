@@ -14,6 +14,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 function CreateListing() {
+  //eslint-disable-next-line
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -52,20 +53,23 @@ function CreateListing() {
   const navigate = useNavigate();
   const isMounted = useRef(true);
 
-  useEffect(() => {
-    if (isMounted) {
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setFormData({ ...formData, userRef: user.uid });
-        } else {
-          navigate("/sign-in");
-        }
-      });
-    }
-    return () => {
-      isMounted.current = false;
-    };
-  }, [isMounted]);
+  useEffect(
+    () => {
+      if (isMounted) {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setFormData({ ...formData, userRef: user.uid });
+          } else {
+            navigate("/sign-in");
+          }
+        });
+      }
+      return () => {
+        isMounted.current = false;
+      };
+    }, //eslint-disable-next-line
+    [isMounted]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -135,6 +139,8 @@ function CreateListing() {
                 break;
               case "running":
                 console.log("Upload is running");
+                break;
+              default:
                 break;
             }
           },
